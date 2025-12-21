@@ -1,22 +1,24 @@
+import datetime
+from datetime import datetime
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import Toplevel
 
 def save():
-    time = i7.get()
+    time = datetime.now()
     bmiresult = str(bmi_)
     age2 = str(age)
 
     with open('records.txt','a') as file:
-        file.write(time + '\n' + 'Age = ' + age2 + '\n' + 'BMI = ' + bmiresult + '\n' + 'Range = ' + type + '\n' + '--' + '\n')
+        file.write(str(time) + '\n' + 'Age = ' + age2 + '\n' + 'BMI = ' + bmiresult + '\n' + 'Range = ' + type + '\n' + '----------' + '\n')
         messagebox.showinfo('Confirmation','Results stored successfully')
         result.destroy()
         info.destroy()
 
 def bmi():
-    h = float(i3.get())
+    h = float(height_entry.get())
     height = float(h*h)
-    weight = float(i5.get())
+    weight = float(weight_entry.get())
 
     global bmi_, type, result    
     
@@ -35,15 +37,15 @@ def bmi():
     result.geometry('250x120')
     result.minsize(250, 120)
     result.maxsize(250, 120)
-    result.title('Results')
+    result.title('BMI Calculator')
 
-    r1 = tk.Label(
+    result_label = tk.Label(
         result,
         text='Your BMI',
         font=('Arial',20,'bold'),
         width=20
     )
-    r1.grid(
+    result_label.grid(
         row=1,
         column=1,
         columnspan=2,
@@ -51,52 +53,52 @@ def bmi():
         pady=2
     )
 
-    r2 = tk.Label(
+    bmi_label = tk.Label(
         result,
         text='BMI =',
         font=('Arial',15)
     )
-    r2.grid(
+    bmi_label.grid(
         row=2,column=1
     )
 
-    r3 = tk.Label(
+    bmi_result = tk.Label(
         result,
         text=f'{bmi_:.2f}',
         font=('Arial',15)
     )
-    r3.grid(
+    bmi_result.grid(
         row=2,
         column=2
     )
 
-    r4 = tk.Label(
+    range_label = tk.Label(
         result,
         text='Range =',
         font=('Arial',15)
     )
-    r4.grid(
+    range_label.grid(
         row=3,
         column=1
     )
     
-    r5 = tk.Label(
+    range_result = tk.Label(
         result,
         text=type,
         font=('Arial',15)
     )
-    r5.grid(
+    range_result.grid(
         row=3,
         column=2
     )
 
-    r6 = tk.Button(
+    save_button = tk.Button(
         result,
         text='Save',
         command=save,
         width=20
     )
-    r6.grid(
+    save_button.grid(
         row=4,
         column=1,
         columnspan=2
@@ -104,20 +106,20 @@ def bmi():
 
 
 def infopage():
-    global i3, i5, i7, info
+    global height_entry, weight_entry, info
 
     info = Toplevel()
-    info.title('User Info')
-    info.geometry('280x180')
-    info.minsize(280, 180)
+    info.title('BMI Calculator')
+    info.geometry('280x150')
+    info.minsize(280, 150)
 
-    i1 = tk.Label(
+    info_label = tk.Label(
         info,
         text='Personal Information',
         font=('Arial',20,'bold'),
         width=20
     )
-    i1.grid(
+    info_label.grid(
         row=1,
         column=1,
         columnspan=2,
@@ -125,73 +127,57 @@ def infopage():
         pady=2
     )
 
-    i2 = tk.Label(
+    height_label = tk.Label(
         info,
         text='Height (m)',
         font=('Arial',15)
     )
-    i2.grid(
+    height_label.grid(
         row=2,
         column=1
     )
 
-    i3 = tk.Entry(info)
-    i3.grid(
+    height_entry = tk.Entry(info)
+    height_entry.grid(
         row=2,
         column=2
     )
 
-    i4 = tk.Label(
+    weight_label = tk.Label(
         info,
         text='Weight (kg)',
         font=('Arial',15)
     )
-    i4.grid(
+    weight_label.grid(
         row=3,
         column=1
     )
 
-    i5 = tk.Entry(info)
-    i5.grid(
+    weight_entry = tk.Entry(info)
+    weight_entry.grid(
         row=3,
         column=2
     )
 
-    i6 = tk.Label(
-        info,
-        text='Date',
-        font=('Arial',15)
-    )
-    i6.grid(
-        row=4,
-        column=1
-    )
-
-    i7 = tk.Entry(info)
-    i7.grid(
-        row=4,
-        column=2
-    )
-
-    i8 = tk.Button(
+    submit_button = tk.Button(
         info,
         text='Submit',
         command=bmi,    
         width=20      
     )
-    i8.grid(
+    submit_button.grid(
         row=5,
         column=1,
         columnspan=2
     )
 
-    i9 = tk.Button(
+    exit_button = tk.Button(
         info,
         text='Back',
         command=info.destroy,
         width=20
     )
-    i9.grid(
+    exit_button.grid(
         row=6,
         column=1,
         columnspan=2
@@ -201,7 +187,7 @@ def infopage():
 
 def ageverify():
     global age
-    age = int(a2.get())
+    age = int(age_entry.get())
 
     if age >= 18:
         infopage()
@@ -211,39 +197,39 @@ def ageverify():
         root.destroy()
 
 def aged():
-    global a2, agecheck
+    global age_entry, agecheck
 
     agecheck = Toplevel()
-    agecheck.title('Age')
-    agecheck.geometry('250x100')
-    agecheck.minsize(240, 60)
-    agecheck.maxsize(240, 60)
+    agecheck.title('BMI Calculator')
+    agecheck.geometry('230x100')
+    agecheck.minsize(230, 60)
+    agecheck.maxsize(230, 60)
 
-    a1 = tk.Label(
+    age_label = tk.Label(
         agecheck,
         text='Age',
         font=('Arial',15)
     )
-    a1.grid(
+    age_label.grid(
         row=1,
         column=1
     )
 
-    a2 = tk.Entry(
+    age_entry = tk.Entry(
         agecheck,
     )
-    a2.grid(
+    age_entry.grid(
         row=1,
         column=2
     )
 
-    a3 = tk.Button(
+    submit_button = tk.Button(
         agecheck,
         text='Submit',
         command=ageverify,
         width=20
     )
-    a3.grid(
+    submit_button.grid(
         row=2,
         column=1,
         columnspan=2,
@@ -251,17 +237,17 @@ def aged():
 
 root = tk.Tk()
 root.title('BMI Calculator')
-root.geometry('245x100')
-root.minsize(245, 100)
-root.maxsize(245, 100)
+root.geometry('245x90')
+root.minsize(245,90)
+root.maxsize(245,90)
 
-r1 = tk.Label(
+root_label = tk.Label(
     root,
     text = 'BMI Calculator',
     font = ('Arial',20),
     width = 20
 )
-r1.grid(
+root_label.grid(
     row=1,
     column=1,
     columnspan=2,
@@ -269,13 +255,13 @@ r1.grid(
     pady=0
 )
 
-r2 = tk.Button(
+measure_button = tk.Button(
     root,
     text='Measure BMI',
     command=aged,
     width=20
 )
-r2.grid(
+measure_button.grid(
     row=2,
     column=1,
     columnspan=2,
@@ -283,13 +269,13 @@ r2.grid(
     pady=0
 )
 
-r3 = tk.Button(
+exit_button = tk.Button(
     root,
     text='Exit',
     command=root.destroy,
     width=20
 )
-r3.grid(
+exit_button.grid(
     row=3,
     column=1,
     columnspan=2,
