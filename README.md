@@ -13,11 +13,14 @@ An app made using Python tkinter which allows users to see if their bmi is healt
 -> Then the user must click the save button to save their results to records.txt
 
 ## Installation
-git clone <repo>
+git clone (repo)
+cd (repo)
 
-pip install tk
-
+### Windows
 python bmiapp.py
+
+### MacOS & Linux
+python3 bmiapp.py
 
 ## Tech Stack
 -> Python
