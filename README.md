@@ -14,6 +14,7 @@ An app made using Python tkinter which allows users to see if their bmi is healt
 
 ## Installation
 git clone (repo)
+
 cd (repo)
 
 ### Windows
