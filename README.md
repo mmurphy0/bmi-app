@@ -30,3 +30,6 @@ python3 bmiapp.py
 
 ## Future Updates
 -> Update GUI
+
+## Please note
+The results in records.txt are not real results and were used to test the functionality of the program
