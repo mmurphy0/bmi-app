@@ -35,9 +35,8 @@ def bmi():
         type = 'Obese'
 
     result = Toplevel()
-    result.geometry('250x120')
-    result.minsize(250, 120)
-    result.maxsize(250, 120)
+    result.geometry('250x120+0+0')
+    result.resizable(False,False)
     result.title('BMI Calculator')
 
     result_label = tk.Label(
@@ -111,8 +110,8 @@ def infopage():
 
     info = Toplevel()
     info.title('BMI Calculator')
-    info.geometry('280x150')
-    info.minsize(280, 150)
+    info.geometry('280x150+0+0')
+    info.resizable(False,False)
 
     info_label = tk.Label(
         info,
@@ -202,27 +201,18 @@ def aged():
 
     agecheck = Toplevel()
     agecheck.title('BMI Calculator')
-    agecheck.geometry('230x100')
-    agecheck.minsize(230, 60)
-    agecheck.maxsize(230, 60)
+    agecheck.geometry('230x90+0+0')
+    agecheck.resizable(False,False)
 
     age_label = tk.Label(
         agecheck,
         text='Age',
-        font=('Arial',15)
+        font=('Arial',20,'bold')
     )
-    age_label.grid(
-        row=1,
-        column=1
-    )
+    age_label.pack()
 
-    age_entry = tk.Entry(
-        agecheck,
-    )
-    age_entry.grid(
-        row=1,
-        column=2
-    )
+    age_entry = tk.Entry(agecheck)
+    age_entry.pack()
 
     submit_button = tk.Button(
         agecheck,
@@ -230,22 +220,17 @@ def aged():
         command=ageverify,
         width=20
     )
-    submit_button.grid(
-        row=2,
-        column=1,
-        columnspan=2,
-    )
+    submit_button.pack()
 
 root = tk.Tk()
 root.title('BMI Calculator')
 root.geometry('245x90')
-root.minsize(245,90)
-root.maxsize(245,90)
+root.resizable(245,90)
 
 root_label = tk.Label(
     root,
     text = 'BMI Calculator',
-    font = ('Arial',20),
+    font = ('Arial',20,'bold'),
     width = 20
 )
 root_label.grid(
